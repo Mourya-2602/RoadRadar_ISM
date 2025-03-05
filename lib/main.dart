@@ -38,13 +38,8 @@ class HomePage extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              // Admin Container with Navigation
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Admin()),
-                  );
+              GestureDetector(onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => Admin()),);
                 },
                 child: Container(
                   height: 200,
@@ -61,13 +56,8 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
               ),
-              // Driver Container with Navigation
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Driver()),
-                  );
+              GestureDetector(onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => Driver()),);
                 },
                 child: Container(
                   height: 200,
@@ -90,12 +80,9 @@ class HomePage extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(left: 20),
             // User Container with Navigation
-            child: GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => User()),
-                );
+            child:
+            GestureDetector(onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => User()),);
               },
               child: Container(
                 height: 200,
