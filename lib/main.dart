@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'pages/admin.dart';
+import 'pages/driver.dart';
+import 'pages/user.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,23 +14,39 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        backgroundColor: Colors.deepPurple[200],
-        appBar: AppBar(
-          title: Text("                Road Radar     "),
-          foregroundColor: Colors.white,
-          backgroundColor: Colors.deepPurple,
-          elevation: 0,
-          leading: Icon(Icons.menu),
-        ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
+      home: HomePage(),
+    );
+  }
+}
+
+class HomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.deepPurple[200],
+      appBar: AppBar(
+        title: Text("                Road Radar     "),
+        foregroundColor: Colors.white,
+        backgroundColor: Colors.deepPurple,
+        elevation: 0,
+        leading: Icon(Icons.menu),
+      ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              // Admin Container with Navigation
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Admin()),
+                  );
+                },
+                child: Container(
                   height: 200,
                   width: 200,
                   decoration: BoxDecoration(
@@ -38,10 +57,19 @@ class MyApp extends StatelessWidget {
                   child: Icon(
                     Icons.person,
                     color: Colors.white,
-                    size: 150,
+                    size: 130,
                   ),
                 ),
-                Container(
+              ),
+              // Driver Container with Navigation
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Driver()),
+                  );
+                },
+                child: Container(
                   height: 200,
                   width: 200,
                   decoration: BoxDecoration(
@@ -52,14 +80,23 @@ class MyApp extends StatelessWidget {
                   child: Icon(
                     Icons.directions_bike_rounded,
                     color: Colors.white,
-                    size: 150,
+                    size: 110,
                   ),
                 ),
-              ],
-            ),
-            SizedBox(height: 20), // Space between rows
-            Padding(
-              padding: EdgeInsets.only(left: 20),
+              ),
+            ],
+          ),
+          SizedBox(height: 20), // Space between rows
+          Padding(
+            padding: EdgeInsets.only(left: 20),
+            // User Container with Navigation
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => User()),
+                );
+              },
               child: Container(
                 height: 200,
                 width: 200,
@@ -71,12 +108,12 @@ class MyApp extends StatelessWidget {
                 child: Icon(
                   Icons.face,
                   color: Colors.white,
-                  size: 150,
+                  size: 120,
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
