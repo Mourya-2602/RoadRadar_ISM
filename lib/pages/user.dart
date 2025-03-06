@@ -6,7 +6,7 @@ class User extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title:Text("User")),
+      appBar: AppBar(title:Text("User Login")),
     );
   }
 }
