@@ -32,11 +32,11 @@ class HomePage extends StatelessWidget {
         // leading: Icon(Icons.menu),
       ),
 
-      drawer: Drawer(
-        backgroundColor: Color(0xffb05730),
-      ),
+      // drawer: Drawer(
+      //   backgroundColor: Color(0xffb05730),
+      // ),
 
-      body: SingleChildScrollView(
+      bUserody: SingleChildScrollView(
         child: Column(
           // crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
