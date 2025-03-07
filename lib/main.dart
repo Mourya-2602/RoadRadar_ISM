@@ -36,7 +36,7 @@ class HomePage extends StatelessWidget {
       //   backgroundColor: Color(0xffb05730),
       // ),
 
-      bUserody: SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Column(
           // crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
