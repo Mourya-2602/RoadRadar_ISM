@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'driver_homepage.dart';
 class Driver extends StatefulWidget {
   const Driver({super.key});
 
@@ -36,6 +36,10 @@ class _DriverState extends State<Driver> {
     // For demonstration, assume valid credentials are:
     // Vehicle Registration: "ABC123" and Mobile Number: "9876543210"
     if (registration == "ABC123" && mobile == "9876543210") {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const DriverHomePage()),
+      );
       ScaffoldMessenger.of(context)
           .showSnackBar(const SnackBar(content: Text("Login Successful")));
     } else {
