@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'admin_homepage.dart';
 
 class Admin extends StatefulWidget {
   const Admin({super.key});
@@ -16,11 +17,14 @@ class _AdminState extends State<Admin> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('Don\'t know the PIN'),
-          content: const Text('contact Mourya/Harshit for your credentials'),
+          content: const Text('Contact Mourya/Harshit for your credentials'),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text('OK', style: TextStyle(color: Color(0xffb05730))),
+              child: const Text(
+                'OK',
+                style: TextStyle(color: Color(0xffb05730)),
+              ),
             ),
           ],
         );
@@ -30,8 +34,11 @@ class _AdminState extends State<Admin> {
 
   void _login() {
     String pin = _pinController.text;
-    // For demonstration, assume a valid admin PIN is "0000"
     if (pin == "0000") {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const AdminHomePage()),
+      );
       ScaffoldMessenger.of(context)
           .showSnackBar(const SnackBar(content: Text("Login Successful")));
     } else {
@@ -65,7 +72,6 @@ class _AdminState extends State<Admin> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Admin PIN input field wrapped in a ConstrainedBox to limit its width
             Center(
               child: ConstrainedBox(
                 constraints: const BoxConstraints(maxWidth: 350),
@@ -86,7 +92,6 @@ class _AdminState extends State<Admin> {
               ),
             ),
             const SizedBox(height: 8.0),
-            // Forgot Password link
             Align(
               alignment: Alignment.centerRight,
               child: TextButton(
@@ -98,7 +103,6 @@ class _AdminState extends State<Admin> {
               ),
             ),
             const SizedBox(height: 16.0),
-            // Login button
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xffb05730),
