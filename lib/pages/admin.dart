@@ -15,8 +15,8 @@ class _AdminState extends State<Admin> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Forgot Password'),
-          content: const Text('contact Mourya/Balaji for your credentials'),
+          title: const Text('Don\'t know the PIN'),
+          content: const Text('contact Mourya/Harshit for your credentials'),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
@@ -92,7 +92,7 @@ class _AdminState extends State<Admin> {
               child: TextButton(
                 onPressed: _showForgotPasswordDialog,
                 child: const Text(
-                  'Forgot Password?',
+                  'PIN??',
                   style: TextStyle(color: Color(0xffb05730)),
                 ),
               ),

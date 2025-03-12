@@ -9,41 +9,22 @@ class User extends StatefulWidget {
 
 class _UserState extends State<User> {
   final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+  // final TextEditingController _passwordController = TextEditingController();
 
-  void _showForgotPasswordDialog() {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Forgot Password'),
-          content: Text('contact admin for your credentials'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: Text('OK', style: TextStyle(color: Color(0xffb05730))),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  void _login() {
-    String username = _usernameController.text;
-    String password = _passwordController.text;
-
-    if (username == "admin" && password == "1234") {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Login Successful")));
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Invalid Credentials")));
-    }
-  }
+  // void _login() {
+  //   String username = _usernameController.text;
+  //   // String password = _passwordController.text;
+  //
+  //   if (username == "22JE0573") {
+  //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Login Successful")));
+  //   } else {
+  //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Invalid Credentials")));
+  //   }
+  // }
 
   @override
   void dispose() {
     _usernameController.dispose();
-    _passwordController.dispose();
     super.dispose();
   }
 
@@ -72,7 +53,7 @@ class _UserState extends State<User> {
               child: TextField(
                 controller: _usernameController,
                 decoration: InputDecoration(
-                  labelText: 'Username',
+                  labelText: 'Name',
                   labelStyle: TextStyle(color: Color(0xffb05730)),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Color(0xffb05730)),
@@ -84,37 +65,7 @@ class _UserState extends State<User> {
               ),
             ),
             SizedBox(height: 16.0),
-            // Password input field
-            SizedBox(
-              width: 350,
-              child: TextField(
-                controller: _passwordController,
-                obscureText: true,
-                decoration: InputDecoration(
-                  labelText: 'Password',
-                  labelStyle: TextStyle(color: Color(0xffb05730)),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xffb05730)),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xffb05730)),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(height: 8.0),
-            // Forgot Password link
-            Align(
-              alignment: Alignment.centerRight,
-              child: TextButton(
-                onPressed: _showForgotPasswordDialog,
-                child: Text(
-                  'Forgot Password?',
-                  style: TextStyle(color: Color(0xffb05730)),
-                ),
-              ),
-            ),
-            SizedBox(height: 16.0),
+
             // Login button
             ElevatedButton(
               style: ElevatedButton.styleFrom(
@@ -125,9 +76,9 @@ class _UserState extends State<User> {
               ),
               onPressed: () {
                 // Implement your login logic here.
-                _login();
+                // _login();
               },
-              child: Text('Login'),
+              child: Text('Login',style: TextStyle(fontFamily: 'Raleway', fontWeight: FontWeight.bold),),
             ),
           ],
         ),

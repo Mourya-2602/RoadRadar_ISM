@@ -92,22 +92,7 @@ class HomePage extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width*0.3,
 
-                              child: Text(
-
-                                "Use your admission number.",
-                                softWrap: true,
-                                style: TextStyle(
-                                  fontFamily: 'Raleway',
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-
-                                ),
-                              ),
-                            ),
                           ],
                         ),
                         Icon(Icons.navigate_next, color: Colors.white, size: 32,)
@@ -155,20 +140,7 @@ class HomePage extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width*0.3,
-                              child: Text(
-                                "Use your vehicle registration number and mobile number",
-                                softWrap: true,
-                                style: TextStyle(
-                                  fontFamily: 'Raleway',
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
 
-                                ),
-                              ),
-                            ),
                           ],
                         ),
                         Icon(Icons.navigate_next, color: Colors.white, size: 32,)
@@ -217,20 +189,7 @@ class HomePage extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width*0.3,
-                              child: Text(
-                                "Use your ADMIN PIN",
-                                softWrap: true,
-                                style: TextStyle(
-                                  fontFamily: 'Raleway',
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
 
-                                ),
-                              ),
-                            ),
                           ],
                         ),
                         Icon(Icons.navigate_next, color: Colors.white, size: 32,)
