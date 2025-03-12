@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'user_homepage.dart';
 
 class User extends StatefulWidget {
   const User({super.key});
@@ -11,16 +12,17 @@ class _UserState extends State<User> {
   final TextEditingController _usernameController = TextEditingController();
   // final TextEditingController _passwordController = TextEditingController();
 
-  // void _login() {
-  //   String username = _usernameController.text;
-  //   // String password = _passwordController.text;
-  //
-  //   if (username == "22JE0573") {
-  //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Login Successful")));
-  //   } else {
-  //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Invalid Credentials")));
-  //   }
-  // }
+  void _login() {
+    String username = _usernameController.text;
+    // String password = _passwordController.text;
+
+    // if (username == "22JE0573") {
+    //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Login Successful")));
+    // } else {
+    //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Invalid Credentials")));
+    // }
+    Navigator.push(context, MaterialPageRoute(builder: (context) => User_Home()),);
+  }
 
   @override
   void dispose() {
@@ -76,7 +78,7 @@ class _UserState extends State<User> {
               ),
               onPressed: () {
                 // Implement your login logic here.
-                // _login();
+                _login();
               },
               child: Text('Login',style: TextStyle(fontFamily: 'Raleway', fontWeight: FontWeight.bold),),
             ),
