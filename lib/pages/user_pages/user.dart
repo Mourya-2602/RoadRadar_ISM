@@ -16,12 +16,13 @@ class _UserState extends State<User> {
     String username = _usernameController.text;
     // String password = _passwordController.text;
 
-    // if (username == "22JE0573") {
-    //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Login Successful")));
-    // } else {
-    //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Invalid Credentials")));
-    // }
-    Navigator.push(context, MaterialPageRoute(builder: (context) => User_Home()),);
+    if (username == "") {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Enter your name")));
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Welcome $username")));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => User_Home()),);
+    }
+
   }
 
   @override

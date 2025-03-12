@@ -7,7 +7,14 @@ class User_Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Road Radar User'),
+        title: Text(
+          "Home",
+          style: TextStyle(fontFamily: 'Raleway', fontWeight: FontWeight.bold),
+        ),
+        centerTitle: true,
+        foregroundColor: Colors.white,
+        backgroundColor: Color(0xffb05730),
+        elevation: 0,
       ),
 
     );
