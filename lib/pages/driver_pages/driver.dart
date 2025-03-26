@@ -34,8 +34,8 @@ class _DriverState extends State<Driver> {
     String mobile = _mobileController.text;
 
     // For demonstration, assume valid credentials are:
-    // Vehicle Registration: "ABC123" and Mobile Number: "9876543210"
-    if (registration == "ABC123" && mobile == "9876543210") {
+    // Vehicle Registration: "A" and Mobile Number: "0"
+    if (registration == "A" && mobile == "0") {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const DriverHomePage()),
