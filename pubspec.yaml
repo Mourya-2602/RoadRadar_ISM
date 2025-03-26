@@ -18,6 +18,11 @@ dependencies:
   geolocator: ^13.0.3
   permission_handler: ^11.4.0
   cupertino_icons: ^1.0.8
+  mongo_dart: ^0.10.4
+  shelf: ^1.4.2
+  shelf_router: ^1.1.4
+  dotenv: ^4.2.0
+  flutter_dotenv: ^5.2.1
 
 # Development dependencies.
 dev_dependencies:

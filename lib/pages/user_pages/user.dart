@@ -20,7 +20,7 @@ class _UserState extends State<User> {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Enter your name")));
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Welcome $username")));
-      Navigator.push(context, MaterialPageRoute(builder: (context) => User_Home()),);
+      Navigator.push(context, MaterialPageRoute(builder: (context) => UserHomePage()),);
     }
 
   }
