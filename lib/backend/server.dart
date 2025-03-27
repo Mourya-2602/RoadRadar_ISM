@@ -9,8 +9,8 @@ Future<void> main() async {
 
   final handler = Pipeline()
       .addMiddleware(logRequests())
-      .addHandler(DriverRoutes().router);
+      .addHandler(DriverRoutes().router.call);
 
-  final server = await io.serve(handler, 'localhost', 8080);
+  final server = await io.serve(handler, 'localhost', 8080);  //server initialization
   print('Server is running on http://localhost:8080');
 }

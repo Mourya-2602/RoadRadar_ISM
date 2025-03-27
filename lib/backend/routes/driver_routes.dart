@@ -7,38 +7,58 @@ class DriverRoutes {
   Router get router {
     final router = Router();
 
-    router.post('/register', (Request req) async {
-      final payload = await req.readAsString();
-      final data = json.decode(payload);
-      return Response.ok(
-        json.encode(await DriverController.registerDriver(data)),
-        headers: {'Content-Type': 'application/json'},
-      );
+    // Route to add/register a new driver
+    router.post('/api/', (Request req) async {
+      try {
+        final payload = await req.readAsString();
+        final data = json.decode(payload);
+        return Response.ok(
+          json.encode(await DriverController.registerDriver(data)),
+          headers: {'Content-Type': 'application/json'},
+        );
+      } catch (e) {
+        return Response.internalServerError(body: 'Error registering driver: $e');
+      }
     });
 
-    router.put('/update-location', (Request req) async {
-      final payload = await req.readAsString();
-      final data = json.decode(payload);
-      return Response.ok(
-        json.encode(await DriverController.updateLocation(data)),
-        headers: {'Content-Type': 'application/json'},
-      );
+    // Route to update an existing driver's details
+    router.put('/api', (Request req) async {
+      try {
+        final payload = await req.readAsString();
+        final data = json.decode(payload);
+        return Response.ok(
+          json.encode(await DriverController.updateDriver(data)),
+          headers: {'Content-Type': 'application/json'},
+        );
+      } catch (e) {
+        return Response.internalServerError(body: 'Error updating driver: $e');
+      }
     });
 
-    router.get('/drivers', (Request req) async {
-      return Response.ok(
-        json.encode(await DriverController.getDrivers()),
-        headers: {'Content-Type': 'application/json'},
-      );
+    // Route to fetch all drivers
+    router.get('/api', (Request req) async {
+      try {
+        return Response.ok(
+          json.encode(await DriverController.getDrivers()),
+          headers: {'Content-Type': 'application/json'},
+        );
+      } catch (e) {
+        return Response.internalServerError(body: 'Error fetching drivers: $e');
+      }
     });
 
-    router.delete('/delete-driver', (Request req) async {
-      final payload = await req.readAsString();
-      final data = json.decode(payload);
-      return Response.ok(
-        json.encode(await DriverController.deleteDriver(data['registrationNumber'])),
-        headers: {'Content-Type': 'application/json'},
-      );
+    // Route to delete a driver
+    router.delete('/api', (Request req) async {
+      try {
+        final payload = await req.readAsString();
+        final data = json.decode(payload);
+        return Response.ok(
+          json.encode(await DriverController.deleteDriver(data['registrationNumber'])),
+          headers: {'Content-Type': 'application/json'},
+        );
+      } catch (e) {
+        return Response.internalServerError(body: 'Error deleting driver: $e');
+      }
     });
 
     return router;
