@@ -8,7 +8,7 @@ class DriverRoutes {
     final router = Router();
 
     // Route to add/register a new driver
-    router.post('/api/', (Request req) async {
+    router.post('/api/register', (Request req) async {
       try {
         final payload = await req.readAsString();
         final data = json.decode(payload);
@@ -22,7 +22,7 @@ class DriverRoutes {
     });
 
     // Route to update an existing driver's details
-    router.put('/api', (Request req) async {
+    router.put('/api/update', (Request req) async {
       try {
         final payload = await req.readAsString();
         final data = json.decode(payload);
@@ -36,7 +36,7 @@ class DriverRoutes {
     });
 
     // Route to fetch all drivers
-    router.get('/api', (Request req) async {
+    router.get('/api/fetch', (Request req) async {
       try {
         return Response.ok(
           json.encode(await DriverController.getDrivers()),
@@ -48,7 +48,7 @@ class DriverRoutes {
     });
 
     // Route to delete a driver
-    router.delete('/api', (Request req) async {
+    router.delete('/api/delete', (Request req) async {
       try {
         final payload = await req.readAsString();
         final data = json.decode(payload);

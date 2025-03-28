@@ -23,6 +23,7 @@ class DriverController {
           ..set('name', updatedData['name'])
           ..set('mobileNumber', updatedData['mobileNumber'])
           ..set('vehicleType', updatedData['vehicleType'])
+          ..set('driverpin', updatedData['driverpin'])
           ..set('speedLimitWarnings', updatedData['speedLimitWarnings']),
       );
 
