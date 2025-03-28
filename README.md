@@ -4,11 +4,11 @@ A new Flutter project.
 
 ## Getting Started
 
-# For Backend :
-run commands:
-cd lib
-cd backend
-dart server.dart
+## For Running Backend :
+  run commands:
+  - cd lib
+  - cd backend
+  - dart server.dart
 
 
 This project is a starting point for a Flutter application.
