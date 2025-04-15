@@ -1,6 +1,26 @@
-# road_radar
+# Road Radar
 
-A new Flutter project.
+A location tracking application for drivers.
+
+## App Icon Setup
+
+### Android
+The Android app icon has been updated to a blue location marker on a white background.
+
+### iOS
+To fully update the iOS app icon, follow these steps:
+
+1. Generate iOS app icons using an online tool like [App Icon Generator](https://appicon.co/) or [MakeAppIcon](https://makeappicon.com/)
+2. Upload a 1024x1024px PNG image (preferably a blue location marker on white background)
+3. Download the generated icons
+4. Replace the contents of `ios/Runner/Assets.xcassets/AppIcon.appiconset/` with the downloaded files
+
+## Features
+- User, driver, and admin roles
+- Real-time location tracking
+- Map visualization of drivers
+- Driver management system
+- Authentication
 
 ## Getting Started
 

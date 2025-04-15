@@ -55,45 +55,6 @@ class _LoginScreenState extends State<LoginScreen> {
           return;
         }
 
-        // Check if the driver has been rejected
-        if (result['driver'] != null &&
-            result['driver']['status'] == 'rejected') {
-          setState(() {
-            _isLoading = false;
-          });
-
-          // Show rejection dialog
-          showDialog(
-            context: context,
-            barrierDismissible: false,
-            builder: (context) => AlertDialog(
-              title: const Text('Application Rejected'),
-              content: const Text(
-                'Your driver application has been rejected by the admin. You can register again with updated information.',
-                style: TextStyle(
-                  fontSize: 16,
-                ),
-              ),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                    Navigator.pushReplacementNamed(context, AppRoutes.register);
-                  },
-                  child: const Text('Register Again'),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: const Text('OK'),
-                ),
-              ],
-            ),
-          );
-          return;
-        }
-
         // Check if the driver is pending approval
         if (result['driver'] != null &&
             result['driver']['status'] == 'pending') {
@@ -254,7 +215,23 @@ class _LoginScreenState extends State<LoginScreen> {
                     alignment: Alignment.centerRight,
                     child: TextButton(
                       onPressed: () {
-                        // Handle forgot password in real implementation
+                        // Show forgot password dialog
+                        showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                            title: const Text('Forgot Password'),
+                            content: const Text(
+                              'Please contact the admin to reset your password.',
+                              style: TextStyle(fontSize: 16),
+                            ),
+                            actions: [
+                              TextButton(
+                                onPressed: () => Navigator.pop(context),
+                                child: const Text('OK'),
+                              ),
+                            ],
+                          ),
+                        );
                       },
                       child: const Text('Forgot Password?'),
                     ),

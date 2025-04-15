@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../config/constants.dart';
 import '../../config/theme.dart';
+import '../../config/routes.dart';
 import '../../widgets/common/map_widget.dart';
+import '../../services/api_service.dart';
 
 class UserHomeScreen extends StatefulWidget {
   const UserHomeScreen({super.key});
@@ -12,8 +15,56 @@ class UserHomeScreen extends StatefulWidget {
 }
 
 class _UserHomeScreenState extends State<UserHomeScreen> {
-  final String _userName = 'User'; // In real app, get from local storage
+  String _userName = 'User';
   final int _activeDrivers = 3; // In real app, get from Firebase
+  final ApiService _apiService = ApiService();
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserName();
+  }
+
+  // Load the user name from SharedPreferences
+  Future<void> _loadUserName() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final name = prefs.getString('userName');
+      if (name != null && name.isNotEmpty) {
+        setState(() {
+          _userName = name;
+        });
+      }
+    } catch (e) {
+      // Handle error silently
+      print('Error loading user name: $e');
+    }
+  }
+
+  // Handle logout
+  Future<void> _handleLogout() async {
+    try {
+      final result = await _apiService.logout();
+      if (result) {
+        if (!mounted) return;
+        Navigator.of(context).pushReplacementNamed(AppRoutes.onboarding);
+      } else {
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Failed to logout. Please try again.'),
+          ),
+        );
+      }
+    } catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Error: ${e.toString()}'),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,14 +84,22 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Hello, $_userName',
+                        'Hello $_userName',
                         style: AppTheme.headingStyle,
                       ),
-                      CircleAvatar(
-                        backgroundColor: AppTheme.primaryColor.withOpacity(0.1),
-                        child: const Icon(
-                          Icons.person,
-                          color: AppTheme.primaryColor,
+                      // Logout button instead of profile icon
+                      GestureDetector(
+                        onTap: _handleLogout,
+                        child: Container(
+                          padding: const EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            color: AppTheme.primaryColor.withOpacity(0.1),
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Icon(
+                            Icons.logout,
+                            color: AppTheme.primaryColor,
+                          ),
                         ),
                       ),
                     ],

@@ -248,9 +248,9 @@ class _AdminHomeScreenState extends State<AdminHomeScreen>
     final bool confirm = await showDialog(
           context: context,
           builder: (context) => AlertDialog(
-            title: const Text('Reject Driver'),
+            title: const Text('Delete Driver Application'),
             content: const Text(
-                'Are you sure you want to reject this driver application?'),
+                'Are you sure you want to reject and delete this driver\'s application permanently? This action cannot be undone.'),
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(context, false),
@@ -260,7 +260,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen>
                 onPressed: () => Navigator.pop(context, true),
                 style:
                     TextButton.styleFrom(foregroundColor: AppTheme.errorColor),
-                child: const Text('Reject'),
+                child: const Text('Delete'),
               ),
             ],
           ),
@@ -282,7 +282,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen>
               children: [
                 CircularProgressIndicator(),
                 SizedBox(width: 20),
-                Text("Rejecting driver..."),
+                Text("Deleting driver application..."),
               ],
             ),
           ),
@@ -318,7 +318,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen>
         // Success message
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text('Driver rejected'),
+            content: Text('Driver application deleted'),
             backgroundColor: AppTheme.errorColor,
           ),
         );
@@ -486,7 +486,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen>
                         ),
                         padding: const EdgeInsets.symmetric(vertical: 12),
                       ),
-                      child: const Text('Reject'),
+                      child: const Text('Delete'),
                     ),
                   ),
                   const SizedBox(width: 16),
@@ -682,9 +682,19 @@ class _AdminHomeScreenState extends State<AdminHomeScreen>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Pending Requests (${_pendingDrivers.length})',
-            style: AppTheme.subheadingStyle,
+          Row(
+            children: [
+              Text(
+                'Pending Requests (${_pendingDrivers.length})',
+                style: AppTheme.subheadingStyle,
+              ),
+              const Spacer(),
+              IconButton(
+                icon: const Icon(Icons.refresh, color: AppTheme.primaryColor),
+                onPressed: _fetchPendingDrivers,
+                tooltip: 'Refresh Pending Requests',
+              ),
+            ],
           ),
           const SizedBox(height: 16),
           _pendingDrivers.isEmpty
@@ -1015,7 +1025,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen>
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
-                    child: const Text('Reject'),
+                    child: const Text('Delete'),
                   ),
                 ),
                 const SizedBox(width: 16),

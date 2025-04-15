@@ -71,10 +71,10 @@ router.put('/reject/:id', adminAuth, async (req, res) => {
       return res.status(404).json({ message: 'Driver not found' });
     }
     
-    driver.status = 'rejected';
-    await driver.save();
+    // Delete the driver instead of changing the status
+    await Driver.findByIdAndDelete(req.params.id);
     
-    res.json({ message: 'Driver rejected', driver });
+    res.json({ message: 'Driver rejected and deleted', success: true });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
