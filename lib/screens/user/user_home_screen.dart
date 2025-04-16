@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../config/constants.dart';
 import '../../config/theme.dart';
 import '../../config/routes.dart';
+import '../../config/routes.dart';
 import '../../widgets/common/map_widget.dart';
+import '../../services/api_service.dart';
 import '../../services/api_service.dart';
 
 class UserHomeScreen extends StatefulWidget {
@@ -123,8 +126,22 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                     children: [
                       Text(
                         'Hello $_userName',
+                        'Hello $_userName',
                         style: AppTheme.headingStyle,
                       ),
+                      // Logout button instead of profile icon
+                      GestureDetector(
+                        onTap: _handleLogout,
+                        child: Container(
+                          padding: const EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            color: AppTheme.primaryColor.withOpacity(0.1),
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Icon(
+                            Icons.logout,
+                            color: AppTheme.primaryColor,
+                          ),
                       // Logout button instead of profile icon
                       GestureDetector(
                         onTap: _handleLogout,
