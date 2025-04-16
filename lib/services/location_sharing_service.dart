@@ -17,7 +17,7 @@ class LocationSharingService {
   final ApiService _apiService = ApiService();
   Timer? _locationTimer;
   bool _isActive = false;
-  final Duration _updateInterval = const Duration(seconds: 15);
+  final Duration _updateInterval = const Duration(seconds: 1);
 
   // Check if location sharing is currently active
   Future<bool> isActive() async {

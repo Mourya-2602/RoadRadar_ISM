@@ -28,7 +28,7 @@ class MapService {
     // Set up periodic location updates
     _driverLocationTimer?.cancel();
     _driverLocationTimer = Timer.periodic(
-      const Duration(seconds: 10), // Update every 10 seconds
+      const Duration(seconds: 1), // Update every 10 seconds
       (timer) => _updateDriverLocations(),
     );
 

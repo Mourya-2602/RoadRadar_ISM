@@ -9,8 +9,8 @@ class ApiService {
   // static const String baseUrl = 'http://localhost:5000/api'; // For physical device or iOS simulator
 
   // Use your actual machine's IP address here
-  static const String baseUrl =
-      'https://roadradar-ism.onrender.com'; // REPLACE X with your actual IP
+  static const String baseUrl = 'https://roadradar-ism.onrender.com/api';
+  // 'http://localhost:5000/api'; // REPLACE X with your actual IP
 
   static const String driversEndpoint = '$baseUrl/drivers';
   static const String adminEndpoint = '$baseUrl/admin';
@@ -363,11 +363,23 @@ class ApiService {
   Future<bool> logout() async {
     try {
       final prefs = await SharedPreferences.getInstance();
+      final userType = prefs.getString('userType');
+
+      // If driver, set isActive to false before logging out
+      if (userType == 'driver') {
+        final driverId = prefs.getString('driverId');
+        if (driverId != null) {
+          // Set driver's active status to false
+          await toggleDriverStatus(driverId, false);
+        }
+      }
+
       await prefs.setBool('isLoggedIn', false);
 
       // Keep user type and ID for easier re-login
       return true;
     } catch (e) {
+      print('Error during logout: $e');
       return false;
     }
   }

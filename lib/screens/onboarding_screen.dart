@@ -2,14 +2,19 @@ import 'package:flutter/material.dart';
 import '../config/theme.dart';
 import '../config/routes.dart';
 import '../widgets/common/custom_button.dart';
+import '../services/api_service.dart';
 
 class OnboardingScreen extends StatefulWidget {
   final int initialPage;
+  final bool roleSelection;
 
-  const OnboardingScreen({super.key, this.initialPage = 0});
+  const OnboardingScreen(
+      {super.key, this.initialPage = 0, this.roleSelection = false});
 
   // Named constructor for showing the last page directly
-  const OnboardingScreen.roleSelection({super.key}) : initialPage = 2;
+  const OnboardingScreen.roleSelection({super.key})
+      : initialPage = 2,
+        roleSelection = true;
 
   @override
   State<OnboardingScreen> createState() => _OnboardingScreenState();
@@ -158,6 +163,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   // Dialog to enter username for user role
   void _showUserNameDialog(BuildContext context) {
     final TextEditingController nameController = TextEditingController();
+    final ApiService apiService = ApiService();
 
     showDialog(
       context: context,
@@ -179,12 +185,50 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               child: const Text('Cancel'),
             ),
             TextButton(
-              onPressed: () {
-                if (nameController.text.trim().isNotEmpty) {
-                  // Save user name to local storage in real implementation
+              onPressed: () async {
+                final name = nameController.text.trim();
+                if (name.isNotEmpty) {
+                  // Show loading indicator
+                  showDialog(
+                    context: context,
+                    barrierDismissible: false,
+                    builder: (BuildContext context) {
+                      return const Dialog(
+                        child: Padding(
+                          padding: EdgeInsets.all(20.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              CircularProgressIndicator(),
+                              SizedBox(width: 20),
+                              Text("Saving..."),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  );
+
+                  // Save user name to shared preferences
+                  final result = await apiService.saveUserName(name);
+
+                  // Close loading dialog
                   Navigator.pop(context);
-                  Navigator.of(context)
-                      .pushReplacementNamed(AppRoutes.userHome);
+
+                  if (result) {
+                    // Close name dialog
+                    Navigator.pop(context);
+                    // Navigate to user home
+                    Navigator.of(context)
+                        .pushReplacementNamed(AppRoutes.userHome);
+                  } else {
+                    // Show error if saving failed
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Failed to save name. Please try again.'),
+                      ),
+                    );
+                  }
                 }
               },
               child: const Text('Continue'),

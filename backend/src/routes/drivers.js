@@ -64,12 +64,7 @@ router.post('/login', async (req, res) => {
       });
     }
 
-    // Check if rejected
-    if (driver.status == 'rejected') {
-      return res.status(403).json({ 
-        message: `Your account is ${driver.status}. You can register again.` 
-      });
-    }
+    // No need to check for rejected status anymore since rejected drivers are deleted
     
     // Update last login
     driver.lastLogin = new Date();
